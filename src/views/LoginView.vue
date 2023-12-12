@@ -2,9 +2,9 @@
 <template>
 <div class="login">
   <h1>Login</h1>
-  <input type="text" placeholder="username">
-  <input type="text" placeholder="password">
-  <button>Login</button>
+  <input type="text" placeholder="username" v-model="username">
+  <input type="text" placeholder="password" v-model="password">
+  <button v-on:click="Login">Login</button>
   <p>
     <router-link to="/Signup">
       Don't have an account?
@@ -16,7 +16,19 @@
 
 <script>
 export default {
-  name:"LoginView"
+  name: "LoginView",
+  data() {
+    return {
+      username: "",
+      password: ""
+    }
+  },
+  methods:{
+    Login(){
+      console.log(this.username)
+      console.log(this.password)
+    }
+  }
 }
 
 </script>
@@ -30,6 +42,7 @@ export default {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* Heading styles */
@@ -82,6 +95,9 @@ button {
 
 button:hover {
   background: linear-gradient(to right, #45a049, #4CAF50); /* Hover effect */
+}
+body{
+  background-color: #7DF9FF;
 }
 </style>
 

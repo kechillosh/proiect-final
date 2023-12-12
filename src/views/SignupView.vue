@@ -2,10 +2,10 @@
 <template>
   <div class="Signup">
     <h1>Signup</h1>
-    <input type="text" placeholder="Username">
-    <input type="text" placeholder="Password">
-    <input type="text" placeholder="Confirm Password">
-    <button>Register</button>
+    <input type="text" placeholder="Username" v-model="username">
+    <input type="text" placeholder="Password" v-model="password">
+    <input type="text" placeholder="Confirm Password" v-model="password2">
+    <button v-on:click="Signup">Register</button>
 
     <p>
       <router-link to="/">
@@ -18,9 +18,28 @@
 
 <script>
 export default {
-  name:"SignupView"
-}
+  name: "SignupView",
 
+  data() {
+    return {
+      username: "",
+      password: "",
+      password2: ""
+    };
+  },
+  methods: {
+    Signup() {
+      if (this.password === this.password2 && this.username.length >= 6) {
+        alert("Contul a fost creat");
+        // Store username and password separately in local storage
+        localStorage.setItem('username', this.username);
+        localStorage.setItem('password', this.password);
+      } else {
+        alert("Parolele nu coincid sau username-ul are mai putin de 6 caractere.");
+      }
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -32,6 +51,7 @@ export default {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+text-align: center;
 }
 
 /* Heading styles */
