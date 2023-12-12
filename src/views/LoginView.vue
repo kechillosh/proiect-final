@@ -25,8 +25,11 @@ export default {
   },
   methods:{
     Login(){
-      console.log(this.username)
-      console.log(this.password)
+      if(this.username === localStorage.getItem("username") && this.password === localStorage.getItem("password")){
+        this.$router.push("/Home")
+      } else {
+        alert("Datele introduse nu sunt corecte")
+      }
     }
   }
 }
