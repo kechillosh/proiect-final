@@ -22,8 +22,8 @@
         />
       </a>
       <div v-if="showList" class="dropdown-list">
-        <!-- Your list content goes here -->
-        <router-link to="/Logout" class="dropdown-item">Logout</router-link>
+        <p>user: {{user}}</p>
+        <router-link to="/" class="dropdown-item">Logout</router-link>
       </div>
     </div>
   </nav>
@@ -38,6 +38,7 @@ export default {
   data() {
     return {
       showList: false,
+      user:localStorage.getItem("username")
     }
   },
   methods: {
@@ -90,4 +91,31 @@ div {
   opacity: 0.75;
   cursor: pointer;
 }
+
+.dropdown-list {
+  position: absolute;
+  top: 60px; /* Adjust this value based on your design */
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 1001;
+}
+
+.dropdown-item {
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.dropdown-item:hover {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
 </style>
