@@ -1,9 +1,10 @@
 
 <template>
+  <div class="login-container">
 <div class="login">
   <h1>Login</h1>
   <input type="text" placeholder="username" v-model="username">
-  <input type="text" placeholder="password" v-model="password">
+  <input type="password" placeholder="password" v-model="password">
   <button v-on:click="Login">Login</button>
   <p>
     <router-link to="/Signup">
@@ -11,6 +12,7 @@
     </router-link>
   </p>
 </div>
+  </div>
 
 </template>
 
@@ -37,6 +39,13 @@ export default {
 </script>
 
 <style scoped>
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+
+}
 /* Container styles */
 .login {
   max-width: 400px;

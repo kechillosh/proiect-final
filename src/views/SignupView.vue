@@ -1,10 +1,11 @@
 
 <template>
+  <div class="signup-container">
   <div class="Signup">
     <h1>Signup</h1>
     <input type="text" placeholder="Username" v-model="username">
-    <input type="text" placeholder="Password" v-model="password">
-    <input type="text" placeholder="Confirm Password" v-model="password2">
+    <input type="password" placeholder="Password" v-model="password">
+    <input type="password" placeholder="Confirm Password" v-model="password2">
     <button v-on:click="Signup">Register</button>
 
     <p>
@@ -12,6 +13,7 @@
         Already have an account?
       </router-link>
     </p>
+  </div>
   </div>
 
 </template>
@@ -43,6 +45,13 @@ export default {
 </script>
 
 <style scoped>
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+
+}
 /* Container styles */
 .Signup {
   max-width: 400px;
