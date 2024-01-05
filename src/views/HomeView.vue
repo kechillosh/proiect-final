@@ -73,7 +73,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 
 .message{
   text-align: center;
