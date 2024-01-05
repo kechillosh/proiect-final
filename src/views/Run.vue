@@ -1,6 +1,10 @@
 <template>
-  <div>
-    <div ref="mapContainer" style="width: 100%; height: 200px; border: 1px solid black; margin-top: 50vh;margin-bottom: 10vh"></div>
+  <div class="mainMap">
+    <div>
+    <div ref="mapContainer" style="width: 50%; height: 600px; border: 1px solid black; margin-top: 20vh;margin-bottom: 10vh;margin-left: 23vw"></div>
+      <button v-on:click="getLocation">Start run</button>
+      {{lat}},{{lng}}
+    </div>
   </div>
 </template>
 
@@ -18,14 +22,16 @@
   const map = ref(null);
   const mapContainer = ref(null);
 
-  const getLocation = () => {
-  if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition((position) => {
-  lat.value = position.coords.latitude;
-  lng.value = position.coords.longitude;
-});
-}
-};
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          lat.value = position.coords.latitude;
+          lng.value = position.coords.longitude;
+          map.value.setView([lat.value, lng.value], 13);
+        });
+      }
+    };
+
 
   onMounted(() => {
   if (mapContainer.value) {
@@ -48,3 +54,11 @@
 },
 };
 </script>
+
+<style>
+.mainMap {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+</style>
