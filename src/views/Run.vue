@@ -15,72 +15,64 @@ import { ref, onMounted } from "vue";
 import L from "leaflet";
 
 export default {
-  name: "HomeView.vue",
+  name: "HomeView",
   components: { Navbar },
-  setup() {
-    const lat = ref(0);
-    const lng = ref(0);
-    const map = ref(null);
-    const markerStart = ref(null);
-    const markerEnd = ref(null);
-    const traveledDistance = ref(0);
-    const mapContainer = ref(null); // Add this line
-
-    const getLocation = () => {
+  data() {
+    return {
+      lat: ref(0),
+      lng: ref(0),
+      map: ref(null),
+      markerStart: ref(null),
+      markerEnd: ref(null),
+      traveledDistance: ref(0),
+      mapContainer: ref(null),
+    };
+  },
+  methods: {
+    getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.watchPosition((position) => {
           const newLat = position.coords.latitude;
           const newLng = position.coords.longitude;
 
           // Set the starting point
-          lat.value = newLat;
-          lng.value = newLng;
+          this.lat = newLat;
+          this.lng = newLng;
 
           // Update the map view
-          map.value.setView([newLat, newLng], 17);
+          this.map.setView([newLat, newLng], 17);
 
           // Update the starting marker position or create a new one if it doesn't exist
-          if (markerStart.value) {
-            markerStart.value.setLatLng([newLat, newLng]);
+          if (this.markerStart) {
+            this.markerStart.setLatLng([newLat, newLng]);
           } else {
-            markerStart.value = L.marker([newLat, newLng]).addTo(map.value);
+            this.markerStart = L.marker([newLat, newLng]).addTo(this.map);
           }
 
           // Calculate and display the distance
-          if (markerEnd.value) {
-            traveledDistance.value = markerEnd.value.getLatLng().distanceTo([newLat, newLng]);
+          if (this.markerEnd) {
+            this.traveledDistance = this.markerEnd.getLatLng().distanceTo([newLat, newLng]);
           }
 
           // Update the end marker position or create a new one if it doesn't exist
-          if (markerEnd.value) {
-            markerEnd.value.setLatLng([newLat, newLng]);
+          if (this.markerEnd) {
+            this.markerEnd.setLatLng([newLat, newLng]);
           } else {
-            markerEnd.value = L.marker([newLat, newLng]).addTo(map.value);
+            this.markerEnd = L.marker([newLat, newLng]).addTo(this.map);
           }
         });
       }
-    };
-
-    onMounted(() => {
-      if (mapContainer.value) {
-        map.value = L.map(mapContainer.value).setView([51.505, -0.09], 13);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map.value);
-      }
-    });
-
-    return {
-      lat,
-      lng,
-      getLocation,
-      map,
-      traveledDistance,
-      markerStart,
-      markerEnd,
-      mapContainer,
-    };
+    },
+  },
+  mounted() {
+    if (this.$refs.mapContainer) {
+      this.mapContainer = this.$refs.mapContainer;
+      this.map = L.map(this.mapContainer).setView([51.505, -0.09], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(this.map);
+    }
   },
 };
 </script>
@@ -92,3 +84,5 @@ export default {
   justify-content: center;
 }
 </style>
+
+
