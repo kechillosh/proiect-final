@@ -1,4 +1,5 @@
 <template>
+  <body>
   <div class="app-container">
     <Navbar />
 
@@ -14,7 +15,7 @@
           the first step, click below, and let the adventure unfold.<br />
           Your accomplishments await! 🚀
         </p>
-        <router-link to='/Run' class="run-button" @click="getLocation" >Run Now</router-link>
+        <router-link to='/Run' class="run-button" >Run Now</router-link>
       </div>
 
       <div class="leaderboard-container">
@@ -22,6 +23,7 @@
       </div>
     </div>
   </div>
+  </body>
 </template>
 
 <script>
@@ -32,41 +34,11 @@ import L from "leaflet";
 export default {
   name: "HomeView.vue",
   components: { Navbar },
-  setup() {
-    const user = localStorage.getItem("username");
-    const lat = ref(0);
-    const lng = ref(0);
-    const map = ref(null);
-    const mapContainer = ref(null);
-
-    const getLocation = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition((position) => {
-          lat.value = position.coords.latitude;
-          lng.value = position.coords.longitude;
-        });
-      }
-    };
-
-    onMounted(() => {
-      if (mapContainer.value) {
-        map.value = L.map(mapContainer.value).setView([51.505, -0.09], 13);
-        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-          maxZoom: 19,
-          attribution:
-              '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        }).addTo(map.value);
-      }
-    });
-
+  data() {
     return {
-      user,
-      lat,
-      lng,
-      getLocation,
-      map,
-      mapContainer,
-    };
+      user: localStorage.getItem("username"),
+
+    }
   },
 };
 </script>
@@ -74,6 +46,9 @@ export default {
 
 
 <style scoped>
+body {
+  background-color: #badcff;
+}
 
 .message{
   text-align: center;
@@ -113,9 +88,6 @@ export default {
     text-align: center;
     outline: 2px solid black;
 }
-  body {
-    background-color: #badcff;
-  }
 
 .run-button {
   background-color: green; /* Lime green button color */
