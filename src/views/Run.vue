@@ -1,17 +1,21 @@
 <template>
+  <body :style="{ background: background1 }">
   <div class="mainMap">
     <Navbar/>
-    <div>
-      <div ref="mapContainer" style="width: 50%; height: 600px; border: 1px solid black; margin-top: 12vh; margin-left: 25vw"></div>
-      <div class="run-info">
-      <button v-on:click="startRun" v-if="!run">Start run</button>
-      <button v-on:click="endRun" v-if="run">End run</button>
-      {{ lat }},{{ lng }} <br>
-      Traveled Distance: {{ traveledDistance.toFixed(2) }} meters <br>
-        <span>{{ timeElapsed }}</span>
+    <div class="infoMapC">
+      <div class="infoMap">
+        <div ref="mapContainer" style="height: 600px; border: 1px solid black;"></div>
+        <div class="run-info">
+          <button v-on:click="startRun" v-if="!run">Start run</button>
+          <button v-on:click="endRun" v-if="run">End run</button>
+          {{ lat }},{{ lng }} <br>
+          Traveled Distance: {{ traveledDistance.toFixed(2) }} meters <br>
+          <span>{{ timeElapsed }}</span>
+        </div>
       </div>
     </div>
   </div>
+  </body>
 </template>
 
 <script>
@@ -34,6 +38,7 @@ export default {
       run: ref(false),
       startTime: ref(null),
       timeElapsed: ref("00:00:00"),
+      background1:ref('#badcff')
     };
   },
   methods: {
@@ -59,7 +64,12 @@ export default {
 
           // Calculate and display the distance
           if (this.markerEnd) {
-            this.traveledDistance = this.markerEnd.getLatLng().distanceTo([newLat, newLng]);
+            const distanceToStart = this.markerEnd.getLatLng().distanceTo([newLat, newLng]);
+
+            // If the distance is significant (not just a small GPS error), update traveledDistance
+            if (distanceToStart > 1) {
+              this.traveledDistance += distanceToStart;
+            }
           }
 
           // Update the end marker position or create a new one if it doesn't exist
@@ -76,14 +86,17 @@ export default {
         });
       }
     },
+
     startRun() {
       this.run = true;
       this.startTime = new Date().getTime();
       this.updateElapsedTime();
       this.getLocation();
+      this.background1 = '#03fcbe'
     },
     endRun() {
       this.run = false;
+      this.background1 = '#badcff'
     },
     updateElapsedTime() {
       if (this.run) {
@@ -121,6 +134,32 @@ export default {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.mainMap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.infoMapC {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 900px;
+  margin-top: 15vh;
+}
+.infoMap{
+  width: 900px;
+}
+
+
 
 .run-info {
   display: flex;

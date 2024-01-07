@@ -1,12 +1,15 @@
 
 <template>
-  <main>
+  <body>
+  <Navbar/>
+  </body>
 
-  </main>
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue";
 export default {
-  name:"MyRunsView"
+  name:"MyRunsView",
+  components:{Navbar}
 }
 </script>

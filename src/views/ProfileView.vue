@@ -1,10 +1,13 @@
 
 <template>
-  <main>
-  </main>
+  <body>
+<Navbar/>
+  </body>
 </template>
 <script>
+import Navbar from "@/components/Navbar.vue";
 export default {
-  name:"ProfileView"
+  name:"ProfileView",
+  components:{Navbar}
 }
 </script>

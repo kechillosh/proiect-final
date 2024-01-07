@@ -15,7 +15,8 @@
           the first step, click below, and let the adventure unfold.<br />
           Your accomplishments await! 🚀
         </p>
-        <router-link to='/Run' class="run-button" >Run Now</router-link>
+        <router-link to='/Run'  style="margin-top: 20px !important;" > <button class="run-button">Run Now </button>
+        </router-link>
       </div>
 
       <div class="leaderboard-container">
@@ -53,8 +54,8 @@ body {
 .message{
   text-align: center;
   position: relative;
-  top: 40vh; /* Move down by 20 pixels */
-  left: 10px; /* Move left by 10 pixels */
+  top: 40vh;
+  left: 10px;
   color: #333;
   font-size: 20px;
   padding: 25px;
@@ -97,7 +98,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* Smooth transition effect */
-  margin-top: 17px;
+  margin-top: 10vh;
+
 
 }
 
