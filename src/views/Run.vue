@@ -9,7 +9,7 @@
           <button v-on:click="startRun" v-if="!run">Start run</button>
           <button v-on:click="endRun" v-if="run">End run</button>
           {{ lat }},{{ lng }} <br>
-          Traveled Distance: {{ traveledDistance.toFixed(2) }} meters <br>
+          Traveled Distance: {{ (traveledDistance / 1000).toFixed(2) }} kilometers <br>
           <span>{{ timeElapsed }}</span>
         </div>
       </div>
@@ -38,7 +38,7 @@ export default {
       run: ref(false),
       startTime: ref(null),
       timeElapsed: ref("00:00:00"),
-      background1:ref('#badcff')
+      background1: ref('#badcff')
     };
   },
   methods: {
@@ -92,11 +92,11 @@ export default {
       this.startTime = new Date().getTime();
       this.updateElapsedTime();
       this.getLocation();
-      this.background1 = '#03fcbe'
+      this.background1 = '#03fcbe';
     },
     endRun() {
       this.run = false;
-      this.background1 = '#badcff'
+      this.background1 = '#badcff';
     },
     updateElapsedTime() {
       if (this.run) {
@@ -155,11 +155,9 @@ html, body {
   width: 900px;
   margin-top: 15vh;
 }
-.infoMap{
+.infoMap {
   width: 900px;
 }
-
-
 
 .run-info {
   display: flex;
@@ -189,6 +187,7 @@ span {
   font-size: 20px;
 }
 </style>
+
 
 
 
