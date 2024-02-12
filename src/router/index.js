@@ -37,7 +37,7 @@ const router = createRouter({
     },
     {
       path: '/Run',
-      name: 'Signup',
+      name: 'Run',
       component:Run
     }
 

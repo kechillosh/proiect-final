@@ -37,7 +37,7 @@ export default {
   components: { Navbar },
   data() {
     return {
-      user: localStorage.getItem("username"),
+      user: localStorage.getItem('username'),
 
     }
   },

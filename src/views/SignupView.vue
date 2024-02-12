@@ -1,21 +1,19 @@
-
 <template>
   <div class="signup-container">
-  <div class="Signup">
-    <h1>Signup</h1>
-    <input type="text" placeholder="Username" v-model="username">
-    <input type="password" placeholder="Password" v-model="password">
-    <input type="password" placeholder="Confirm Password" v-model="password2">
-    <button v-on:click="Signup">Register</button>
+    <div class="Signup">
+      <h1>Signup</h1>
+      <input type="text" placeholder="Username" v-model="username">
+      <input type="password" placeholder="Password" v-model="password">
+      <input type="password" placeholder="Confirm Password" v-model="password2">
+      <button v-on:click="signup">Register</button>
 
-    <p>
-      <router-link to="/">
-        Already have an account?
-      </router-link>
-    </p>
+      <p>
+        <router-link to="/">
+          Already have an account?
+        </router-link>
+      </p>
+    </div>
   </div>
-  </div>
-
 </template>
 
 <script>
@@ -26,20 +24,38 @@ export default {
     return {
       username: "",
       password: "",
-      password2: ""
+      password2: "",
+      accounts: []
     };
   },
   methods: {
-    Signup() {
+    signup() {
       if (this.password === this.password2 && this.username.length >= 6) {
-        alert("Contul a fost creat");
-        // Store username and password separately in local storage
-        localStorage.setItem('username', this.username);
-        localStorage.setItem('password', this.password);
+        // Check if the username is already taken
+        const isUsernameTaken = this.accounts.some(account => account.username === this.username);
+
+        if (isUsernameTaken) {
+          alert("Username is already taken. Choose another one.");
+        } else {
+          // Add the new account to the array
+          this.accounts.push({
+            username: this.username,
+            password: this.password
+          });
+
+          // Save the updated array back to localStorage
+          localStorage.setItem('accounts', JSON.stringify(this.accounts));
+
+          alert("Account created successfully");
+        }
       } else {
-        alert("Parolele nu coincid sau username-ul are mai putin de 6 caractere.");
+        alert("Passwords do not match or the username has fewer than 6 characters.");
       }
     }
+  },
+  mounted() {
+    // Retrieve existing accounts from localStorage when the component is mounted
+    this.accounts = JSON.parse(localStorage.getItem('accounts')) || [];
   }
 };
 </script>

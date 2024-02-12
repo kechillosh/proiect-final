@@ -26,16 +26,25 @@ export default {
     }
   },
   methods:{
-    Login(){
-      if(this.username === localStorage.getItem("username") && this.password === localStorage.getItem("password")){
-        this.$router.push("/Home")
+    Login() {
+      const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+      const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
+
+      if (matchedAccount) {
+        // Clear previous user data
+        localStorage.removeItem('username');
+
+        // Store only the username in localStorage
+        localStorage.setItem('username', this.username);
+
+        // Redirect to the Home page or perform any other action
+        this.$router.push("/Home");
       } else {
-        alert("Datele introduse nu sunt corecte")
+        alert("Invalid credentials");
       }
     }
   }
 }
-
 </script>
 
 <style scoped>
