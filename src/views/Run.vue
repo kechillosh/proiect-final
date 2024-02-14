@@ -112,7 +112,7 @@ export default {
         // Add the run data to the found account
         accounts[loggedInAccountIndex].runs = accounts[loggedInAccountIndex].runs || [];
         accounts[loggedInAccountIndex].runs.push({
-          distance: this.traveledDistance,
+          distance: (this.traveledDistance/ 1000).toFixed(2),
           time: this.timeElapsed,
           date: new Date().toISOString(),
         });
