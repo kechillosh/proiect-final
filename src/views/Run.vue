@@ -94,10 +94,41 @@ export default {
       this.getLocation();
       this.background1 = '#03fcbe';
     },
+
     endRun() {
       this.run = false;
       this.background1 = '#badcff';
+
+      // Retrieve the currently logged-in username from localStorage
+      const loggedInUser = localStorage.getItem('username');
+
+      // Fetch the existing accounts from localStorage
+      const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+      // Find the account with the currently logged-in username
+      const loggedInAccountIndex = accounts.findIndex(account => account.username === loggedInUser);
+
+      if (loggedInAccountIndex !== -1) {
+        // Add the run data to the found account
+        accounts[loggedInAccountIndex].runs = accounts[loggedInAccountIndex].runs || [];
+        accounts[loggedInAccountIndex].runs.push({
+          distance: this.traveledDistance,
+          time: this.timeElapsed,
+          date: new Date().toISOString(),
+        });
+
+        // Save the updated accounts array back to localStorage
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+      } else {
+        console.error("Unable to find the currently logged-in user in accounts.");
+      }
+
+      // Reset the run-specific data for the next run
+      this.traveledDistance = 0;
+      this.timeElapsed = "00:00:00";
     },
+
+
     updateElapsedTime() {
       if (this.run) {
         const currentTime = new Date().getTime();
