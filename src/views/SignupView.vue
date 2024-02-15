@@ -66,17 +66,22 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  height: 100vh;
+  background: url('src/assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed;
+  background-size: cover;
 
 }
 /* Container styles */
 .Signup {
   max-width: 400px;
-  margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-text-align: center;
+  text-align: center;
+  background-color: #fff; /* Set a non-transparent background color */
+
+  border: 2px solid #333;
+  border-radius: 10px;
+  margin: 20px;
 }
 
 /* Heading styles */

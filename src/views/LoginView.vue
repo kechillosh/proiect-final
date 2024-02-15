@@ -30,7 +30,7 @@ export default {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
       const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
 
-      if (matchedAccount) {
+      if (matchedAccount && matchedAccount.age !== null && matchedAccount.height !== null && matchedAccount.weight !== null) {
         // Clear previous user data
         localStorage.removeItem('username');
 
@@ -38,9 +38,11 @@ export default {
         localStorage.setItem('username', this.username);
 
         // Redirect to the Home page or perform any other action
-        this.$router.push("/Welcome");
+        this.$router.push("/Home");
+      } else if (!matchedAccount) {
+        alert("Invalid account");
       } else {
-        alert("Invalid credentials");
+        this.$router.push("/Welcome");
       }
     }
   }
@@ -65,6 +67,10 @@ export default {
   max-width: 500px;
   padding: 16px;
   background-color: white;
+
+  border: 2px solid #333;
+  border-radius: 10px;
+  margin: 20px;
 }
 
 /* Rest of your styles */
@@ -72,9 +78,6 @@ export default {
   max-width: 400px;
   margin: auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   background-color: white;
 }
