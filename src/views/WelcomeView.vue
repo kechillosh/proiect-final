@@ -59,7 +59,7 @@ export default {
       // Find the account with the currently logged-in username
       const loggedInAccountIndex = accounts.findIndex(account => account.username === loggedInUser);
 
-      if (loggedInAccountIndex !== -1) {
+      if (loggedInAccountIndex !== -1 && this.weight !== null && this.age !== null && this.height !== null) {
         // Update the user data for the current user
         accounts[loggedInAccountIndex].weight = this.weight;
         accounts[loggedInAccountIndex].height = this.height;
@@ -67,19 +67,17 @@ export default {
 
         // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
+        this.$router.push("/Home");
       } else {
-        console.error("Unable to find the currently logged-in user in accounts.");
+        console.error("Invalid data or unable to find the currently logged-in user in accounts.");
       }
-
-      // Redirect the user to the homepage or another route
-      this.$router.push({ name: 'HomePage' }); // Assuming 'HomePage' is the name of your homepage route
     },
   },
   created() {
     // Simulate loading delay (you can replace this with actual data loading logic)
     setTimeout(() => {
       this.showLoader = false; // Set showLoader to false after the delay
-    }, 2000); // Adjust the duration as needed
+    }, 1500); // Adjust the duration as needed
   },
 };
 </script>

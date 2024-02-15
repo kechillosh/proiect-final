@@ -61,7 +61,7 @@ nav {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 99;
 }
 
 div {
