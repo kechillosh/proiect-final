@@ -30,7 +30,9 @@ export default {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
       const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
 
-      if (matchedAccount && matchedAccount.age !== null && matchedAccount.height !== null && matchedAccount.weight !== null) {
+
+
+      if (matchedAccount && matchedAccount.age >=0 && matchedAccount.height >=0 && matchedAccount.weight >=0) {
         // Clear previous user data
         localStorage.removeItem('username');
 
