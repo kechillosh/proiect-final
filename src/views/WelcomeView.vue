@@ -1,4 +1,10 @@
 <template>
+  <div class="preLoader" v-if="showLoader">
+    <div class="icon">  <Icon width="60px"
+        icon="noto:person-running-facing-right-medium-skin-tone"/>
+
+    </div>
+  </div>
   <div class="container">
     <div class="content">
       <h1>Welcome to My Running App!</h1>
@@ -27,10 +33,14 @@
 </template>
 
 <script>
+
+import { Icon } from '@iconify/vue';
 export default {
   name: "WelcomeView",
+  components: {Icon},
   data() {
     return {
+      showLoader: true,
       weight: null,
       height: null,
       age: null,
@@ -65,10 +75,22 @@ export default {
       this.$router.push({ name: 'HomePage' }); // Assuming 'HomePage' is the name of your homepage route
     },
   },
+  created() {
+    // Simulate loading delay (you can replace this with actual data loading logic)
+    setTimeout(() => {
+      this.showLoader = false; // Set showLoader to false after the delay
+    }, 2000); // Adjust the duration as needed
+  },
 };
 </script>
 
 <style scoped>
+.icon{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  animation: loading 2s linear infinite; /* Adjust the duration and other parameters as needed */
+}
 body {
   display: flex;
   align-items: center;
@@ -138,6 +160,31 @@ button {
 
 button:hover {
   background-color: #27ae60;
+}
+
+.preLoader {
+  background: #cfd8d6; /* Change to a color that contrasts with your icon */
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.5);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 </style>
 

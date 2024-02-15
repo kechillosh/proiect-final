@@ -1,19 +1,19 @@
-
 <template>
-  <div class="login-container">
-<div class="login">
-  <h1>Login</h1>
-  <input type="text" placeholder="username" v-model="username">
-  <input type="password" placeholder="password" v-model="password">
-  <button v-on:click="Login">Login</button>
-  <p>
-    <router-link to="/Signup">
-      Don't have an account?
-    </router-link>
-  </p>
-</div>
+  <div class="container">
+    <div class="login-container">
+      <div class="login">
+        <h1>Login</h1>
+        <input type="text" placeholder="username" v-model="username">
+        <input type="password" placeholder="password" v-model="password">
+        <button @click="Login">Login</button>
+        <p>
+          <router-link to="/Signup">
+            Don't have an account?
+          </router-link>
+        </p>
+      </div>
+    </div>
   </div>
-
 </template>
 
 <script>
@@ -48,14 +48,26 @@ export default {
 </script>
 
 <style scoped>
-.login-container {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
-
+  height: 100vh;
+  background: url('src/assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
-/* Container styles */
+
+.login-container {
+  position: absolute;
+  top: 50%; /* Center the login form vertically */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  padding: 16px;
+  background-color: white;
+}
+
+/* Rest of your styles */
 .login {
   max-width: 400px;
   margin: auto;
@@ -64,6 +76,7 @@ export default {
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
+  background-color: white;
 }
 
 /* Heading styles */
@@ -110,17 +123,20 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(to right, #4CAF50, #45a049); /* Gradient background */
+  background: linear-gradient(to right, #4CAF50, #45a049);
   transition: background 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(to right, #45a049, #4CAF50); /* Hover effect */
+  background: linear-gradient(to right, #45a049, #4CAF50);
 }
-body{
+
+body {
   background-color: #7DF9FF;
 }
 </style>
+
+
 
 
 
