@@ -38,7 +38,7 @@ export default {
         localStorage.setItem('username', this.username);
 
         // Redirect to the Home page or perform any other action
-        this.$router.push("/Home");
+        this.$router.push("/Welcome");
       } else {
         alert("Invalid credentials");
       }
