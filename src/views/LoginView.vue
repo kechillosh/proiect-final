@@ -30,14 +30,13 @@ export default {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
       const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
 
+      localStorage.removeItem('username');
 
+      // Store the username from the matchedAccount in localStorage
+      localStorage.setItem('username', matchedAccount.username);
 
-      if (matchedAccount && matchedAccount.age >=0 && matchedAccount.height >=0 && matchedAccount.weight >=0) {
+      if (matchedAccount && matchedAccount.age >= 0 && matchedAccount.height >= 0 && matchedAccount.weight >= 0) {
         // Clear previous user data
-        localStorage.removeItem('username');
-
-        // Store only the username in localStorage
-        localStorage.setItem('username', this.username);
 
         // Redirect to the Home page or perform any other action
         this.$router.push("/Home");
@@ -50,6 +49,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 .container {

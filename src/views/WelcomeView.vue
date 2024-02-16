@@ -57,13 +57,13 @@ export default {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
       // Find the account with the currently logged-in username
-      const loggedInAccountIndex = accounts.findIndex(account => account.username === loggedInUser);
+      const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
-      if (loggedInAccountIndex !== -1 && this.weight !== null && this.age !== null && this.height !== null) {
+      if (loggedInAccount && this.weight !== null && this.age !== null && this.height !== null) {
         // Update the user data for the current user
-        accounts[loggedInAccountIndex].weight = this.weight;
-        accounts[loggedInAccountIndex].height = this.height;
-        accounts[loggedInAccountIndex].age = this.age;
+        loggedInAccount.weight = this.weight;
+        loggedInAccount.height = this.height;
+        loggedInAccount.age = this.age;
 
         // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));

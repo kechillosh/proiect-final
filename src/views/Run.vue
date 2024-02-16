@@ -112,10 +112,22 @@ export default {
         // Add the run data to the found account
         accounts[loggedInAccountIndex].runs = accounts[loggedInAccountIndex].runs || [];
         accounts[loggedInAccountIndex].runs.push({
-          distance: (this.traveledDistance/ 1000).toFixed(2),
+          distance: (this.traveledDistance / 1000).toFixed(2),
           time: this.timeElapsed,
           date: new Date().toISOString(),
         });
+
+        // Calculate and store the total distance for all users
+        const totalDistance = accounts.reduce((sum, account) => {
+          if (account.runs) {
+            account.runs.forEach(run => {
+              sum += parseFloat(run.distance) || 0;
+            });
+          }
+          return sum;
+        }, 0);
+
+        localStorage.setItem('totalDistance', totalDistance.toFixed(2));
 
         // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
@@ -127,7 +139,6 @@ export default {
       this.traveledDistance = 0;
       this.timeElapsed = "00:00:00";
     },
-
 
     updateElapsedTime() {
       if (this.run) {
