@@ -27,11 +27,12 @@
       </div>
     </div>
     <div class="sidebar">
-      <button @click="toggleLeaderboard">
+      <button @click="toggleLeaderboard" >
     <Icon width="50px"
         icon="material-symbols:arrow-circle-left-rounded"/>
       </button>
     </div>
+    <Leaderboard v-if="this.leaderboard"/>
   </div>
   </body>
 </template>
@@ -41,10 +42,11 @@ import Navbar from "@/components/Navbar.vue";
 import { ref, onMounted } from "vue";
 import L from "leaflet";
 import { Icon } from '@iconify/vue';
+import Leaderboard from "@/components/Leaderboard.vue";
 
 export default {
   name: "HomeView.vue",
-  components: { Navbar, Icon },
+  components: { Navbar, Icon , Leaderboard },
   data() {
     return {
       user: localStorage.getItem('username'),
@@ -163,6 +165,7 @@ body {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
+  z-index: 1000;
 }
 </style>
 
