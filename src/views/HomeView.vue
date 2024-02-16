@@ -26,6 +26,12 @@
         </div>
       </div>
     </div>
+    <div class="sidebar">
+      <button @click="toggleLeaderboard">
+    <Icon width="50px"
+        icon="material-symbols:arrow-circle-left-rounded"/>
+      </button>
+    </div>
   </div>
   </body>
 </template>
@@ -43,6 +49,7 @@ export default {
     return {
       user: localStorage.getItem('username'),
       showLoader: true,
+      leaderboard:true,
     }
   },
   created() {
@@ -51,7 +58,16 @@ export default {
       this.showLoader = false; // Set showLoader to false after the delay
     }, 1000); // Adjust the duration as needed
   },
+
+methods: {
+  toggleLeaderboard() {
+    this.leaderboard = !this.leaderboard;
+    console.log(this.leaderboard)
+  },
+}
+
 };
+
 </script>
 
 <style scoped>
@@ -141,6 +157,12 @@ body {
   100% {
     transform: rotate(360deg) scale(1);
   }
+}
+.sidebar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
 }
 </style>
 

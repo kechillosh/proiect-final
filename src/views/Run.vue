@@ -106,28 +106,25 @@ export default {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
       // Find the account with the currently logged-in username
-      const loggedInAccountIndex = accounts.findIndex(account => account.username === loggedInUser);
+      const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
-      if (loggedInAccountIndex !== -1) {
-        // Add the run data to the found account
-        accounts[loggedInAccountIndex].runs = accounts[loggedInAccountIndex].runs || [];
-        accounts[loggedInAccountIndex].runs.push({
+      if (loggedInAccount) {
+        // Initialize runs array if it doesn't exist
+        loggedInAccount.runs = loggedInAccount.runs || [];
+
+        // Add the run data to the logged-in account
+        loggedInAccount.runs.push({
           distance: (this.traveledDistance / 1000).toFixed(2),
           time: this.timeElapsed,
           date: new Date().toISOString(),
         });
 
-        // Calculate and store the total distance for all users
-        const totalDistance = accounts.reduce((sum, account) => {
-          if (account.runs) {
-            account.runs.forEach(run => {
-              sum += parseFloat(run.distance) || 0;
-            });
-          }
-          return sum;
+        // Calculate and store the total distance for the specific user
+        const totalDistance = loggedInAccount.runs.reduce((sum, run) => {
+          return sum + (parseFloat(run.distance) || 0);
         }, 0);
 
-        localStorage.setItem('totalDistance', totalDistance.toFixed(2));
+        loggedInAccount.totalDistance = totalDistance.toFixed(2);
 
         // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
