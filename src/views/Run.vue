@@ -126,6 +126,9 @@ export default {
 
         loggedInAccount.totalDistance = totalDistance.toFixed(2);
 
+        // Save the last run date for the specific user
+        loggedInAccount.lastRunDate = new Date().toISOString();
+
         // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
       } else {

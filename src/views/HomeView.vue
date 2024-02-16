@@ -51,7 +51,7 @@ export default {
     return {
       user: localStorage.getItem('username'),
       showLoader: true,
-      leaderboard:true,
+      leaderboard:false,
     }
   },
   created() {
@@ -165,7 +165,7 @@ body {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  z-index: 1000;
+  z-index: 99;
 }
 </style>
 
