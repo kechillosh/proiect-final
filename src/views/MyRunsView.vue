@@ -1,6 +1,7 @@
 <template>
   <div class="page-container">
     <Navbar />
+    <div class="content-container">
     <div class="filter-menu">
       <label for="sort">Sort by:</label>
       <select id="sort" v-model="sortBy">
@@ -25,6 +26,7 @@
       </tr>
       </tbody>
     </table>
+      </div>
   </div>
 </template>
 
@@ -72,29 +74,44 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #badcff; /* Matching the specified background color */
   font-family: 'Arial', sans-serif;
+  background: url('src/assets/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
+  background-size: cover;
 }
+
+.content-container {
+  background: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  width: 80vw;
+}
+
 
 .filter-menu {
   margin: 20px;
 }
 
 .runs-table {
-  width: 80%;
+  width: 95%;
   border-collapse: collapse;
-  margin: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 10px;
   overflow: hidden;
+  background-color: rgba(255, 255, 255, 1);
+  border: 2px solid #333;
+  padding: 20px;
+  margin: 20px;
 }
 
 .runs-table th, .runs-table td {
@@ -111,6 +128,44 @@ export default {
   background-color: #f0f0f0;
   transition: background-color 0.3s ease;
 }
+
+.filter-menu {
+  margin: 20px;
+  text-align: center;
+}
+
+.filter-menu label {
+  font-size: 16px;
+  margin-right: 10px;
+  color: #333; /* Adjust the color as needed */
+}
+
+.filter-menu select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333; /* Adjust the color as needed */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.filter-menu select:hover,
+.filter-menu select:focus {
+  border-color: #007bff; /* Change to the color you prefer on hover/focus */
+  outline: none;
+}
+
+.filter-menu select option {
+  background-color: #fff;
+  color: #333; /* Adjust the color as needed */
+}
+
+.filter-menu select option:hover {
+  background-color: #f0f0f0;
+}
+
 </style>
 
 
