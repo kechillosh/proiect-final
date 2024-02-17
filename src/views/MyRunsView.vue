@@ -1,4 +1,9 @@
 <template>
+  <div class="preLoader" v-if="showLoader">
+    <div class="icon">
+      <Icon width="60px" icon="noto:person-running-facing-right-medium-skin-tone"/>
+    </div>
+  </div>
   <div class="page-container">
     <Navbar />
     <div class="content-container">
@@ -32,17 +37,25 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import { Icon } from '@iconify/vue';
 
 export default {
   name: "MyRunsView",
-  components: { Navbar },
+  components: {Icon, Navbar },
   data() {
     return {
       // Assuming you retrieve the logged-in user and accounts from local storage
       loggedInUser: localStorage.getItem("username"),
       accounts: JSON.parse(localStorage.getItem("accounts")) || [],
       sortBy: "latest",
-    };
+      showLoader: true,
+  };
+  },
+  created() {
+    // Simulate loading delay (you can replace this with actual data loading logic)
+    setTimeout(() => {
+      this.showLoader = false; // Set showLoader to false after the delay
+    }, 1000); // Adjust the duration as needed
   },
   computed: {
     // Filter runs for the logged-in user
@@ -164,6 +177,38 @@ export default {
 
 .filter-menu select option:hover {
   background-color: #f0f0f0;
+}
+
+.icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  animation: loading 2s linear infinite;
+}
+
+.preLoader {
+  background: #cfd8d6;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.5);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
 }
 
 </style>

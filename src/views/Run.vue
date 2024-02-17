@@ -4,7 +4,7 @@
     <Navbar/>
     <div class="infoMapC">
       <div class="infoMap">
-        <div ref="mapContainer" style="height: 600px; border: 1px solid black;"></div>
+        <div ref="mapContainer" style="height: 600px; border: 1px solid black;width: 1100px"></div>
         <div class="run-info">
           <button v-on:click="startRun" v-if="!run">Start run</button>
           <button v-on:click="endRun" v-if="run">End run</button>
@@ -194,11 +194,13 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 900px;
-  margin-top: 15vh;
-}
-.infoMap {
-  width: 900px;
+  width: 1200px;
+  margin-top: 5vh;
+  background: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
 .run-info {

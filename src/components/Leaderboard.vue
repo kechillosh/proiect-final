@@ -1,5 +1,6 @@
 <template>
   <div class="leaderboard-container">
+    <h1>Leaderboard</h1>
     <table class="runs-table">
       <thead>
       <tr>
@@ -74,8 +75,11 @@ export default {
   left: 0;
   height: 100vh;
   z-index: 98;
+  text-align: center;
 }
-
+h1 {
+  padding: 10px;
+}
 .filter-menu {
   margin-bottom: 20px;
 }
