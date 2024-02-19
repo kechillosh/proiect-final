@@ -239,6 +239,18 @@ span {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
+
+@media screen and (max-height:  800px) {
+
+  .mapContainer {
+
+    height:40vh;
+    border:1px solid black;
+    width: 60vw;
+
+  }
+
+  }
 </style>
 
 
