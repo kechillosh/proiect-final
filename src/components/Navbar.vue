@@ -13,6 +13,7 @@
         <Icon icon="iconamoon:profile-fill"/>
         Profile
       </router-link>
+      <div>
       <a class="icon-link mobile-nav" @click="toggleDropdown">
         <Icon
             class="menu-icon"
@@ -21,11 +22,12 @@
             color="white"
         />
       </a>
-      <div v-if="showDropdownMenu" class="dropdown-list mobile-nav">
+      <div v-if="showDropdownMenu" class="dropdown-menu">
         <router-link to="/Home" class="dropdown-item">Home</router-link>
         <router-link to="/MyRuns" class="dropdown-item">MyRuns</router-link>
         <router-link to="/Profile" class="dropdown-item">Profile</router-link>
         <router-link to="/" class="dropdown-item">Logout</router-link>
+      </div>
       </div>
       <div class="navbar-right">
       <a class="icon-link desktop-nav" @click="toggleList">
@@ -120,6 +122,18 @@ div {
   position: absolute;
   top: 60px; /* Adjust this value based on your design */
   right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  z-index: 1001;
+}
+.dropdown-menu {
+  position: absolute;
+  top:55px; /* Adjust this value based on your design */
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
