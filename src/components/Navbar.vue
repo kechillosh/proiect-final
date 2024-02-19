@@ -1,19 +1,34 @@
 <template>
   <nav>
     <div>
-      <router-link to="/Home" class="nav-link">
+      <router-link to="/Home" class="nav-link desktop-nav">
         <Icon icon="material-symbols:home"/>
         Home
       </router-link>
-      <router-link to="/MyRuns" class="nav-link">
+      <router-link to="/MyRuns" class="nav-link desktop-nav">
         <Icon icon="cil:running"/>
         MyRuns
       </router-link>
-      <router-link to="/Profile" class="nav-link">
+      <router-link to="/Profile" class="nav-link desktop-nav">
         <Icon icon="iconamoon:profile-fill"/>
         Profile
       </router-link>
-      <a class="icon-link" @click="toggleList">
+      <a class="icon-link mobile-nav" @click="toggleDropdown">
+        <Icon
+            class="menu-icon"
+            icon="material-symbols:table-rows-narrow"
+            width="30"
+            color="white"
+        />
+      </a>
+      <div v-if="showDropdownMenu" class="dropdown-list mobile-nav">
+        <router-link to="/Home" class="dropdown-item">Home</router-link>
+        <router-link to="/MyRuns" class="dropdown-item">MyRuns</router-link>
+        <router-link to="/Profile" class="dropdown-item">Profile</router-link>
+        <router-link to="/" class="dropdown-item">Logout</router-link>
+      </div>
+      <div class="navbar-right">
+      <a class="icon-link desktop-nav" @click="toggleList">
         <Icon
             class="user"
             icon="iconamoon:profile-circle-duotone"
@@ -25,9 +40,13 @@
         <p>user: {{user}}</p>
         <router-link to="/" class="dropdown-item">Logout</router-link>
       </div>
+      </div>
     </div>
   </nav>
 </template>
+
+
+
 
 <script>
 import { Icon } from '@iconify/vue';
@@ -38,20 +57,25 @@ export default {
   data() {
     return {
       showList: false,
-      user:localStorage.getItem("username")
+      user:localStorage.getItem("username"),
+      showDropdownMenu: false
     }
   },
   methods: {
     toggleList() {
       this.showList = !this.showList;
     },
+    toggleDropdown() {
+      this.showDropdownMenu = !this.showDropdownMenu
+    },
   },
+
 }
 </script>
 
 
 <style scoped>
-.user {
+.navbar-right {
   margin-left: 75vw;
 }
 
@@ -117,5 +141,39 @@ div {
   background-color: #2ecc71;
   color: #fff;
 }
+
+@media screen and (max-width: 1600px) {
+  .navbar-right {
+    margin-left: 70vw; /* Adjust the left margin for smaller screens */
+  }
+
+}
+
+@media screen and (max-width: 1360px) {
+  .navbar-right {
+    margin-left: 65vw; /* Adjust the left margin for smaller screens */
+  }
+}
+
+@media screen and (min-width: 1100px) {
+  .desktop-nav {
+    display: block;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
 
 </style>
