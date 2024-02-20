@@ -55,10 +55,9 @@ export default {
     }
   },
   created() {
-    // Simulate loading delay (you can replace this with actual data loading logic)
     setTimeout(() => {
-      this.showLoader = false; // Set showLoader to false after the delay
-    }, 1000); // Adjust the duration as needed
+      this.showLoader = false;
+    }, 1000);
   },
 
 methods: {
@@ -83,7 +82,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('src/assets/1509963788.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
+  background: url('src/assets/1509963788.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -91,8 +90,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Vertically center the content */
-  min-height: 100vh; /* Set minimum height to at least the full viewport height */
+  justify-content: center;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -122,7 +121,7 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 20px; /* Adjusted margin-top */
+  margin-top: 20px;
 }
 
 .run-button:hover {

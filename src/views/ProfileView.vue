@@ -2,12 +2,10 @@
   <body>
   <Navbar/>
   <div class="profile-container">
-    <!-- User Info Section -->
     <section class="user-info">
       <h2>User Information</h2>
       <p><strong>Username:</strong> {{ username }}</p>
 
-      <!-- Editable fields with v-if to toggle between display and edit modes -->
       <div v-if="!editMode">
         <p><strong>Age:</strong> {{ age }}</p>
         <p><strong>Weight:</strong> {{ weight }} kg</p>
@@ -25,17 +23,14 @@
         <input v-model="editedHeight" type="number" id="editedHeight" placeholder="Enter Height">
       </div>
 
-      <!-- Toggle Edit and Apply Changes buttons -->
       <button v-if="!editMode" @click="toggleEditMode">Edit</button>
       <button v-if="editMode" @click="applyChanges">Apply Changes</button>
     </section>
 
-    <!-- Other Sections or Components can be added here -->
   </div>
   </body>
 </template>
 
-<!-- ... (rest of the component) -->
 
 
 <script>
@@ -50,24 +45,20 @@ export default {
       age: null,
       weight: null,
       height: null,
-      editMode: false, // Flag to track if in edit mode
-      editedAge: null, // Edited values
+      editMode: false,
+      editedAge: null,
       editedWeight: null,
       editedHeight: null,
     };
   },
   created() {
-    // Get the currently logged-in user from localStorage
     const loggedInUser = localStorage.getItem('username');
 
-    // Fetch the existing accounts from localStorage
     const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
-    // Find the account with the currently logged-in username
     const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
     if (loggedInAccount) {
-      // Set user data from localStorage
       this.username = loggedInUser;
       this.age = loggedInAccount.age;
       this.weight = loggedInAccount.weight;
@@ -78,10 +69,8 @@ export default {
   },
   methods: {
     toggleEditMode() {
-      // Toggle the edit mode
       this.editMode = !this.editMode;
 
-      // Set edited values to current values when entering edit mode
       if (this.editMode) {
         this.editedAge = this.age;
         this.editedWeight = this.weight;
@@ -89,36 +78,27 @@ export default {
       }
     },
     applyChanges() {
-      // Apply the edited values
       this.age = this.editedAge;
       this.weight = this.editedWeight;
       this.height = this.editedHeight;
 
-      // Save the updated accounts array back to localStorage
       this.saveUserData();
 
-      // Exit edit mode
       this.editMode = false;
     },
     saveUserData() {
-      // Validate the data if needed
 
-      // Get the currently logged-in user from localStorage
       const loggedInUser = localStorage.getItem('username');
 
-      // Fetch the existing accounts from localStorage
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
-      // Find the account with the currently logged-in username
       const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
       if (loggedInAccount && this.weight !== null && this.age !== null && this.height !== null) {
-        // Update the user data for the current user
         loggedInAccount.weight = this.weight;
         loggedInAccount.height = this.height;
         loggedInAccount.age = this.age;
 
-        // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
       } else {
         console.error("Invalid data or unable to find the currently logged-in user in accounts.");
@@ -136,16 +116,16 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0; /* Set your desired background color */
+  background-color: #f0f0f0;
 }
 
 .profile-container {
-  width: 400px; /* Set your desired width */
+  width: 400px;
   padding: 20px;
-  border: 2px solid #333; /* Set your desired border color */
-  border-radius: 10px; /* Set your desired border radius */
-  background-color: #fff; /* Set your desired background color */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a box shadow */
+  border: 2px solid #333;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
@@ -161,8 +141,8 @@ input {
 
 button {
   padding: 10px;
-  background-color: #007bff; /* Set your desired button background color */
-  color: #fff; /* Set your desired button text color */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -170,7 +150,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3; /* Set your desired button background color on hover */
+  background-color: #0056b3;
 }
 </style>
 

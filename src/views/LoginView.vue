@@ -32,13 +32,10 @@ export default {
 
       localStorage.removeItem('username');
 
-      // Store the username from the matchedAccount in localStorage
       localStorage.setItem('username', matchedAccount.username);
 
       if (matchedAccount && matchedAccount.age >= 0 && matchedAccount.height >= 0 && matchedAccount.weight >= 0) {
-        // Clear previous user data
 
-        // Redirect to the Home page or perform any other action
         this.$router.push("/Home");
       } else if (!matchedAccount) {
         alert("Invalid account");
@@ -63,7 +60,7 @@ export default {
 
 .login-container {
   position: absolute;
-  top: 50%; /* Center the login form vertically */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 500px;
@@ -75,7 +72,6 @@ export default {
   margin: 20px;
 }
 
-/* Rest of your styles */
 .login {
   max-width: 400px;
   margin: auto;
@@ -84,13 +80,11 @@ export default {
   background-color: white;
 }
 
-/* Heading styles */
 h1 {
   text-align: center;
   color: #333;
 }
 
-/* Input styles */
 input {
   width: 100%;
   padding: 10px;
@@ -100,7 +94,6 @@ input {
   border-radius: 4px;
 }
 
-/* Link styles */
 p {
   text-align: center;
   margin-top: 16px;

@@ -30,10 +30,8 @@ export default {
   },
   computed: {
     sortedLeaderboard() {
-      // Filter accounts to only include those with a valid lastRunDate
       const accountsWithRuns = this.accounts.filter(account => account.lastRunDate);
 
-      // Sort the accounts with runs by totalDistance in descending order
       const sortedWithRuns = accountsWithRuns.sort((a, b) => b.totalDistance - a.totalDistance);
 
       return sortedWithRuns;
@@ -44,7 +42,6 @@ export default {
     formatRunDate(dateString) {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) {
-        // dateString could not be parsed into a valid Date
         console.error(`Invalid date string: ${dateString}`);
         return 'N/A';
       } else {
@@ -79,9 +76,6 @@ export default {
 }
 h1 {
   padding: 10px;
-}
-.filter-menu {
-  margin-bottom: 20px;
 }
 
 .runs-table {

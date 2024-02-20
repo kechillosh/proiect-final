@@ -31,19 +31,16 @@ export default {
   methods: {
     signup() {
       if (this.password === this.password2 && this.username.length >= 6) {
-        // Check if the username is already taken
         const isUsernameTaken = this.accounts.some(account => account.username === this.username);
 
         if (isUsernameTaken) {
           alert("Username is already taken. Choose another one.");
         } else {
-          // Add the new account to the array
           this.accounts.push({
             username: this.username,
             password: this.password
           });
 
-          // Save the updated array back to localStorage
           localStorage.setItem('accounts', JSON.stringify(this.accounts));
 
           alert("Account created successfully");
@@ -54,7 +51,6 @@ export default {
     }
   },
   mounted() {
-    // Retrieve existing accounts from localStorage when the component is mounted
     this.accounts = JSON.parse(localStorage.getItem('accounts')) || [];
   }
 };
@@ -65,32 +61,29 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  min-height: 100vh;
   height: 100vh;
   background: url('src/assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed;
   background-size: cover;
 
 }
-/* Container styles */
 .Signup {
   max-width: 400px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  background-color: #fff; /* Set a non-transparent background color */
+  background-color: #fff;
 
   border: 2px solid #333;
   border-radius: 10px;
   margin: 20px;
 }
 
-/* Heading styles */
 h1 {
   text-align: center;
   color: #333;
 }
 
-/* Input styles */
 input {
   width: 100%;
   padding: 10px;
@@ -100,7 +93,6 @@ input {
   border-radius: 4px;
 }
 
-/* Link styles */
 p {
   text-align: center;
   margin-top: 16px;
@@ -127,11 +119,11 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 5px;
-  background: linear-gradient(to right, #4CAF50, #45a049); /* Gradient background */
+  background: linear-gradient(to right, #4CAF50, #45a049);
   transition: background 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(to right, #45a049, #4CAF50); /* Hover effect */
+  background: linear-gradient(to right, #45a049, #4CAF50);
 }
 </style>

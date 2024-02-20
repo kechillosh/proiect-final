@@ -48,24 +48,18 @@ export default {
   },
   methods: {
     saveUserData() {
-      // Validate the data if needed
 
-      // Get the currently logged-in user from localStorage
       const loggedInUser = localStorage.getItem('username');
 
-      // Fetch the existing accounts from localStorage
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
 
-      // Find the account with the currently logged-in username
       const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
       if (loggedInAccount && this.weight !== null && this.age !== null && this.height !== null) {
-        // Update the user data for the current user
         loggedInAccount.weight = this.weight;
         loggedInAccount.height = this.height;
         loggedInAccount.age = this.age;
 
-        // Save the updated accounts array back to localStorage
         localStorage.setItem('accounts', JSON.stringify(accounts));
         this.$router.push("/Home");
       } else {
@@ -74,10 +68,9 @@ export default {
     },
   },
   created() {
-    // Simulate loading delay (you can replace this with actual data loading logic)
     setTimeout(() => {
-      this.showLoader = false; // Set showLoader to false after the delay
-    }, 1500); // Adjust the duration as needed
+      this.showLoader = false;
+    }, 1500);
   },
 };
 </script>
@@ -87,7 +80,7 @@ export default {
   position: fixed;
   top: 50%;
   left: 50%;
-  animation: loading 2s linear infinite; /* Adjust the duration and other parameters as needed */
+  animation: loading 2s linear infinite;
 }
 body {
   display: flex;
@@ -115,7 +108,7 @@ body {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: rgba(255, 255, 255, 0.7); /* Adjust the opacity to control brightness */
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 h1 {
@@ -161,7 +154,7 @@ button:hover {
 }
 
 .preLoader {
-  background: #cfd8d6; /* Change to a color that contrasts with your icon */
+  background: #cfd8d6;
   height: 100vh;
   width: 100%;
   position: fixed;

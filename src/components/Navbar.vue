@@ -82,7 +82,7 @@ export default {
 }
 
 nav {
-  background-color: #333; /* Dark Gray */
+  background-color: #333;
   padding: 10px 20px;
   position: fixed;
   top: 0;
@@ -97,14 +97,14 @@ div {
 
 .nav-link {
   text-decoration: none;
-  color: #fff; /* White */
+  color: #fff;
   margin: 0 15px;
   padding: 10px 15px;
   transition: color 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  color: #2ecc71; /* Lime Green */
+  color: #2ecc71;
 }
 
 
@@ -120,7 +120,7 @@ div {
 
 .dropdown-list {
   position: absolute;
-  top: 60px; /* Adjust this value based on your design */
+  top: 60px;
   right: 20px;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -133,7 +133,7 @@ div {
 }
 .dropdown-menu {
   position: absolute;
-  top:55px; /* Adjust this value based on your design */
+  top:55px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -158,14 +158,14 @@ div {
 
 @media screen and (max-width: 1600px) {
   .navbar-right {
-    margin-left: 70vw; /* Adjust the left margin for smaller screens */
+    margin-left: 70vw;
   }
 
 }
 
 @media screen and (max-width: 1360px) {
   .navbar-right {
-    margin-left: 65vw; /* Adjust the left margin for smaller screens */
+    margin-left: 65vw;
   }
 }
 

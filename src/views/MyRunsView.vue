@@ -44,7 +44,6 @@ export default {
   components: {Icon, Navbar },
   data() {
     return {
-      // Assuming you retrieve the logged-in user and accounts from local storage
       loggedInUser: localStorage.getItem("username"),
       accounts: JSON.parse(localStorage.getItem("accounts")) || [],
       sortBy: "latest",
@@ -52,18 +51,15 @@ export default {
   };
   },
   created() {
-    // Simulate loading delay (you can replace this with actual data loading logic)
     setTimeout(() => {
-      this.showLoader = false; // Set showLoader to false after the delay
-    }, 1000); // Adjust the duration as needed
+      this.showLoader = false;
+    }, 1000);
   },
   computed: {
-    // Filter runs for the logged-in user
     userRuns() {
       const userAccount = this.accounts.find((account) => account.username === this.loggedInUser);
       return userAccount ? userAccount.runs || [] : [];
     },
-    // Sort runs based on the selected criteria
     sortedRuns() {
       switch (this.sortBy) {
         case "latest":
@@ -78,7 +74,6 @@ export default {
     },
   },
   methods: {
-    // Format run date as per your requirement
     formatRunDate(dateString) {
       const options = { year: "numeric", month: "short", day: "numeric" };
       return new Date(dateString).toLocaleDateString("en-US", options);
@@ -100,7 +95,7 @@ export default {
 }
 
 .content-container {
-  background: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -150,7 +145,7 @@ export default {
 .filter-menu label {
   font-size: 16px;
   margin-right: 10px;
-  color: #333; /* Adjust the color as needed */
+  color: #333;
 }
 
 .filter-menu select {
@@ -159,20 +154,20 @@ export default {
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-  color: #333; /* Adjust the color as needed */
+  color: #333;
   cursor: pointer;
   transition: border-color 0.3s ease;
 }
 
 .filter-menu select:hover,
 .filter-menu select:focus {
-  border-color: #007bff; /* Change to the color you prefer on hover/focus */
+  border-color: #007bff;
   outline: none;
 }
 
 .filter-menu select option {
   background-color: #fff;
-  color: #333; /* Adjust the color as needed */
+  color: #333;
 }
 
 .filter-menu select option:hover {
