@@ -4,8 +4,8 @@
       <h1>Signup</h1>
       <input type="text" placeholder="Username" v-model="username">
       <input type="password" placeholder="Password" v-model="password">
-      <input type="password" placeholder="Confirm Password" v-model="password2">
-      <button v-on:click="signup">Register</button>
+      <input type="password" placeholder="Confirm Password" v-model="password2" @keyup.enter="signup">
+      <button v-on:click="signup" >Register</button>
 
       <p>
         <router-link to="/">
@@ -44,6 +44,8 @@ export default {
           localStorage.setItem('accounts', JSON.stringify(this.accounts));
 
           alert("Account created successfully");
+
+          this.$router.push("/");
         }
       } else {
         alert("Passwords do not match or the username has fewer than 6 characters.");

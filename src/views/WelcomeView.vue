@@ -48,22 +48,23 @@ export default {
   },
   methods: {
     saveUserData() {
-
       const loggedInUser = localStorage.getItem('username');
-
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-
       const loggedInAccount = accounts.find(account => account.username === loggedInUser);
 
-      if (loggedInAccount && this.weight !== null && this.age !== null && this.height !== null) {
-        loggedInAccount.weight = this.weight;
-        loggedInAccount.height = this.height;
-        loggedInAccount.age = this.age;
+      if (loggedInAccount) {
+        if (this.weight !== null && this.age !== null && this.height !== null) {
+          loggedInAccount.weight = this.weight;
+          loggedInAccount.height = this.height;
+          loggedInAccount.age = this.age;
 
-        localStorage.setItem('accounts', JSON.stringify(accounts));
-        this.$router.push("/Home");
+          localStorage.setItem('accounts', JSON.stringify(accounts));
+          this.$router.push("/Home");
+        } else {
+          alert("Please input your data");
+        }
       } else {
-        console.error("Invalid data or unable to find the currently logged-in user in accounts.");
+        alert("User not found");
       }
     },
   },

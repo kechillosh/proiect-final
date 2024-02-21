@@ -4,8 +4,8 @@
       <div class="login">
         <h1>Login</h1>
         <input type="text" placeholder="username" v-model="username">
-        <input type="password" placeholder="password" v-model="password">
-        <button @click="Login">Login</button>
+        <input type="password" placeholder="password" v-model="password" @keyup.enter="login">
+        <button @click="login">Login</button>
         <p>
           <router-link to="/Signup">
             Don't have an account?
@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    Login() {
+    login() {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
       const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
 
@@ -47,6 +47,8 @@ export default {
   }
 }
 </script>
+
+
 
 
 
