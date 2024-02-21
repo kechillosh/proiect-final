@@ -183,6 +183,7 @@ html, body {
   margin-top: 20px;
 }
 
+
 button {
   padding: 12px 20px;
   font-size: 18px;
@@ -209,6 +210,7 @@ span {
   height:60vh;
   border:1px solid black;
   width: 60vw;
+  z-index: 1;
 
 }
 

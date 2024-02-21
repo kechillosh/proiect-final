@@ -148,7 +148,7 @@ div {
   display: flex;
   flex-direction: column;
   min-width: 150px;
-  z-index: 1001;
+  z-index: 1000;
 }
 
 .dropdown-item {

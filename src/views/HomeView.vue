@@ -82,7 +82,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('src/assets/1509963788.jpg') no-repeat center center fixed;
+  background: url('../assets/1509963788.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
