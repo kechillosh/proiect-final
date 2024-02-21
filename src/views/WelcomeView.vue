@@ -98,7 +98,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('src/assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
+  background: url('../assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
   background-size: cover;
 }
 

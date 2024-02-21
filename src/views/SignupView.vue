@@ -63,7 +63,7 @@ export default {
   justify-content: center;
   min-height: 100vh;
   height: 100vh;
-  background: url('src/assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed;
+  background: url('../assets/correr-runing-zapatillas-asfalto-atardecer.jpg') no-repeat center center fixed;
   background-size: cover;
 
 }

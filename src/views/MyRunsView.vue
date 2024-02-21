@@ -90,7 +90,7 @@ export default {
   justify-content: center;
   height: 100vh;
   font-family: 'Arial', sans-serif;
-  background: url('src/assets/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
+  background: url('../assets/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg') no-repeat center center fixed; /* Replace with the correct path to your image */
   background-size: cover;
 }
 
