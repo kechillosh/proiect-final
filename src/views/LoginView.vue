@@ -25,27 +25,29 @@ export default {
       password: ""
     }
   },
-  methods:{
+  methods: {
     Login() {
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
       const matchedAccount = accounts.find(account => account.username === this.username && account.password === this.password);
 
       localStorage.removeItem('username');
 
-      localStorage.setItem('username', matchedAccount.username);
-
-      if (matchedAccount && matchedAccount.age >= 0 && matchedAccount.height >= 0 && matchedAccount.weight >= 0) {
-
-        this.$router.push("/Home");
-      } else if (!matchedAccount) {
+      if (!matchedAccount) {
         alert("Invalid account");
       } else {
-        this.$router.push("/Welcome");
+        localStorage.setItem('username', matchedAccount.username);
+
+        if (matchedAccount.age >= 0 && matchedAccount.height >= 0 && matchedAccount.weight >= 0) {
+          this.$router.push("/Home");
+        } else {
+          this.$router.push("/Welcome");
+        }
       }
     }
   }
 }
 </script>
+
 
 
 <style scoped>

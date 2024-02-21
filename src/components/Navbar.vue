@@ -1,6 +1,7 @@
 <template>
   <nav>
     <div>
+      <div class="left-navbar">
       <router-link to="/Home" class="nav-link desktop-nav">
         <Icon icon="material-symbols:home"/>
         Home
@@ -13,6 +14,7 @@
         <Icon icon="iconamoon:profile-fill"/>
         Profile
       </router-link>
+      </div>
       <div>
       <a class="icon-link mobile-nav" @click="toggleDropdown">
         <Icon
@@ -93,13 +95,16 @@ nav {
 div {
   display: flex;
   align-items: center;
+  flex-direction: row;
 }
 
 .nav-link {
   text-decoration: none;
   color: #fff;
-  margin: 0 15px;
-  padding: 10px 15px;
+  padding: 15px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
   transition: color 0.3s ease-in-out;
 }
 
@@ -109,8 +114,10 @@ div {
 
 
 .icon-link {
+
   text-decoration: none;
   transition: opacity 0.3s ease-in-out;
+  margin-right: 10px;
 }
 
 .icon-link:hover {

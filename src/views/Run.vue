@@ -166,6 +166,7 @@ html, body {
   padding: 0;
 }
 
+
 .mainMap {
   height: 100vh;
   display: flex;
@@ -228,10 +229,22 @@ span {
 
   .mapContainer {
 
-    height:40vh;
+    height:55vh;
     border:1px solid black;
     width: 60vw;
 
+  }
+  .infoMapC {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65vw;
+    margin-top: 10vh;
+    background: rgba(255, 255, 255, 0.8); /* Adjust opacity as needed */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
   }
 
   }

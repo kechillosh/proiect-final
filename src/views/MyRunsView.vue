@@ -11,7 +11,7 @@
       <label for="sort">Sort by:</label>
       <select id="sort" v-model="sortBy">
         <option value="latest">Latest</option>
-        <option value="lessTime">Less Time</option>
+        <option value="lessTime">Least Time</option>
         <option value="highestKm">Highest Km</option>
       </select>
     </div>
