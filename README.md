@@ -1,6 +1,6 @@
 # proiect-final
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the project that I’ve presented in front of Ametras company after I completed the Softemy Web Developer course. It’s a functional running app that I’ve made into a web site.
 
 ## Recommended IDE Setup
 
