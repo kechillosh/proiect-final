@@ -26,12 +26,9 @@
       <button v-if="!editMode" @click="toggleEditMode">Edit</button>
       <button v-if="editMode" @click="applyChanges">Apply Changes</button>
     </section>
-
   </div>
   </body>
 </template>
-
-
 
 <script>
 import Navbar from "@/components/Navbar.vue";
@@ -87,7 +84,6 @@ export default {
       this.editMode = false;
     },
     saveUserData() {
-
       const loggedInUser = localStorage.getItem('username');
 
       const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
@@ -108,7 +104,6 @@ export default {
 };
 </script>
 
-
 <style scoped>
 body {
   display: flex;
@@ -116,7 +111,7 @@ body {
   justify-content: center;
   height: 100vh;
   margin: 0;
-  background-color: #f0f0f0;
+  background: url('../assets/50-Beautiful-and-Minimalist-Presentation-Backgrounds-031.jpg');
 }
 
 .profile-container {

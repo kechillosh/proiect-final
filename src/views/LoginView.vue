@@ -5,7 +5,10 @@
         <h1>Login</h1>
         <input type="text" placeholder="username" v-model="username">
         <input type="password" placeholder="password" v-model="password" @keyup.enter="login">
-        <button @click="login">Login</button>
+        <div class="button-container">
+          <button @click="login">Login</button>
+          <button @click="testMode">Test Mode</button>
+        </div>
         <p>
           <router-link to="/Signup">
             Don't have an account?
@@ -43,14 +46,31 @@ export default {
           this.$router.push("/Welcome");
         }
       }
+    },
+    testMode() {
+      let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+      const adminAccount = {
+        username: "admin",
+        password: "admin",
+        age: 30,
+        height: 180,
+        weight: 75
+      };
+
+      const existingAdminAccount = accounts.find(account => account.username === adminAccount.username);
+
+      if (!existingAdminAccount) {
+        accounts.push(adminAccount);
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+      }
+
+      localStorage.setItem('username', adminAccount.username);
+      this.$router.push("/Home");
     }
   }
 }
 </script>
-
-
-
-
 
 <style scoped>
 .container {
@@ -70,7 +90,6 @@ export default {
   max-width: 500px;
   padding: 16px;
   background-color: white;
-
   border: 2px solid #333;
   border-radius: 10px;
   margin: 20px;
@@ -98,6 +117,13 @@ input {
   border-radius: 4px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
 p {
   text-align: center;
   margin-top: 16px;
@@ -115,7 +141,6 @@ router-link:hover {
 }
 
 button {
-  display: inline-block;
   padding: 12px 20px;
   font-size: 16px;
   font-weight: bold;
@@ -136,10 +161,47 @@ button:hover {
 body {
   background-color: #7DF9FF;
 }
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .login-container {
+    max-width: 90%;
+    padding: 8px;
+    margin: 10px;
+  }
+
+  .login {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input {
+    padding: 8px;
+    margin: 6px 0;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  p {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  router-link {
+    font-size: 14px;
+  }
+}
+
 </style>
-
-
-
-
-
 
